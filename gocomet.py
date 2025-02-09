@@ -204,25 +204,25 @@ class LLMResponder:
             "surprise" : "measured and thoughtful"
         }
         tone = tone_mapping.get(sentiment["emotion"], "neutral")
-        query = f"{query}\n\n[IMPORTANT]: Make sure your response is {tone}. Use appropriate language and structure to match this emotion.Ensure your response **does not ask questions or offer choices**. End with a clear statement."
+        query = f"{query}\n\n[IMPORTANT]: Make sure your response is {tone}. Use appropriate language and structure to match this emotion. Ensure your response **does not ask questions or offer choices**."
 
         messages = [
             {
                 "role": "system",
                 "content": f"""
-                "You are medical/financial/technical assistant. Your responses must be **informative and direct, without asking questions or offering options to the user. End with a clear statement.**"
+                "You are medical/financial/technical assistant. Your responses must be without asking questions or offering options to the user."
                 Your responses must be:
                 - **Clinically accurate** or factually correct based on the provided context.
-                - **Emotionally aligned** with the user's detected sentiment **{sentiment['emotion']}**
-                - **Concise and complete**, with a response limited to 4-5 sentences.
+                - **Highly Emotionally aligned** with the user's detected sentiment **{sentiment['emotion']}**
+                - **Concise and complete**, with a response limited to 5-10 sentences.
                 
                 
                 The user's detected emotion is **{sentiment['emotion']}**, which means your response should be **{tone}**.
 
-                Here is relevant context from trusted sources:
+                Here is relevant context being provided to you which is highly important:
                 {context_text}
 
-                Now, respond appropriately to the following patient query:
+                Now, respond to the following patient query:
                 """
             },
             {"role": "user", "content": query},
@@ -322,7 +322,7 @@ if __name__== "__main__":
     
     # Path to the folder containing documents and audio_file
     document_folder = script_dir / "docs"
-    audio_path = script_dir / "scenario2.mp3"
+    audio_path = script_dir / "scenario1(exampleMentioned).mp3"
     
     # Allow user to provide custom paths
     custom_doc_path = input(f"Enter document folder path (press Enter to use default: {document_folder}): ").strip()

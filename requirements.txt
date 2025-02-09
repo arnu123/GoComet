@@ -1,0 +1,16 @@
+numpy
+openai-whisper
+torch
+torchaudio
+langchain
+faiss-cpu
+sentence-transformers
+gTTS
+pydub
+pypdf
+tiktoken
+PyPDF2
+tf-keras
+rank-bm25
+simpleaudio
+spacy

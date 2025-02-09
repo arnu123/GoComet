@@ -1,0 +1,14 @@
+Prior Diagnosis Report – Patient Medical Record
+Patient Name: XYZ
+Age: 20
+Diagnosed Condition: Stage 2 Chronic Kidney Disease (CKD)
+eGFR Level: 65 mL/min/1.73 m²
+Comorbidities: Hypertension (Mild), Anemia (Borderline)
+Medical History:
+Diagnosed with Stage 2 CKD based on eGFR between 60-89.
+Mild kidney impairment with no significant symptoms yet, but requires monitoring.
+Blood pressure slightly elevated.
+Current Medications:
+Lisinopril (ACE Inhibitor) – For blood pressure control.
+Prednisone (Steroid, 10 mg/day) – Prescribed for inflammation control.
+Iron Supplements – Due to borderline anemia.

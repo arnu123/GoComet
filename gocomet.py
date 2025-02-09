@@ -210,7 +210,7 @@ class LLMResponder:
             {
                 "role": "system",
                 "content": f"""
-                "You are medical/financial/technical assistant. Your responses must be without asking questions or offering options to the user."
+                "You are medical/financial/technical assistant. Your responses must be without asking questions or offering options to the user. Make sure the last sentence is complete"
                 Your responses must be:
                 - **Clinically accurate** or factually correct based on the provided context.
                 - **Highly Emotionally aligned** with the user's detected sentiment **{sentiment['emotion']}**
@@ -303,26 +303,33 @@ class VoiceActivatedRAGSystem:
         
     def run(self, audio_input_path:str):
         start_time = time.time()
+        t1 = time.time()
         query = self.transcriber.transcribe(audio_input_path)
-           
+        t2 = time.time()
         sentiment = self.sentiment_analyzer.analyze(query)
+        t3 = time.time()
         contexts = self.vector_db.search(query, sentiment=sentiment, top_k=5)
+        t4 = time.time()
         logging.info(f"Retrieved Context Chunks: {contexts}")
         with ThreadPoolExecutor() as executor:
             future_response = executor.submit(self.llm_responder.generate_response, query, contexts, sentiment)
+            t5 = time.time()
             response = future_response.result()
             total_time = time.time() - start_time
-            logging.info(f"Total processing time: {total_time:.2f} seconds")
             executor.submit(self.tts.speak, response)
         
-
+            logging.info(f"Transcription Time: {t2 - t1:.2f} sec")
+            logging.info(f"Sentiment Analysis Time: {t3 - t2:.2f} sec")
+            logging.info(f"Retrieval Time: {t4 - t3:.2f} sec")
+            logging.info(f"Response Generation Time: {t5 - t4:.2f} sec")
+            
 if __name__== "__main__":
     
     script_dir = Path(__file__).parent
     
     # Path to the folder containing documents and audio_file
     document_folder = script_dir / "docs"
-    audio_path = script_dir / "scenario1(exampleMentioned).mp3"
+    audio_path = script_dir / "scenario3.mp3"
     
     # Allow user to provide custom paths
     custom_doc_path = input(f"Enter document folder path (press Enter to use default: {document_folder}): ").strip()

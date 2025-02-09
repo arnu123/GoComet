@@ -1,21 +1,61 @@
 # Voice-Activated RAG System
 
-This project implements a voice-activated Retrieval-Augmented Generation (RAG) system that processes audio queries, retrieves relevant information from documents, and generates responses using a language model.
 
-## Setup
+## 🚀 Features
 
-1. Clone the repository:
-   ```bash
-   git clone [https://github.com/arnu123/voice-activated-rag.git](https://github.com/arnu123/GoComet.git)
-   cd voice-activated-rag
+- 🎤 Voice Transcription: Converts speech into text using OpenAI Whisper.
 
-### Spacy Model Installation
-Download the English language model:
+- 📄 Document Processing: Ingests text/PDF documents for efficient retrieval.
+
+- 😃 Sentiment-Aware Responses: Adapts response tone based on detected sentiment.
+
+- 🔊 Text-to-Speech (TTS): Converts responses into natural-sounding audio output.
+
+## 📥 Installation
+
+- 1️⃣ Clone the Repository
+
+```
+git clone https://github.com/arnu123/GoComet.git
+cd GoComet
+```
+- 2️⃣ Install Dependencies
+* Ensure Python 3.8+ is installed. Then, run:
+
+```
+pip install -r requirements.txt
+```
+- 3️⃣ Upgrade Transformers (Recommended)
+```
+pip install --upgrade transformers
+```
+
+## Spacy Model Installation
+- Download the English language model:
 ```bash
 python -m spacy download en_core_web_sm
+```
+## 🎬 Usage
 
-### Linux Dependencies
-Install `libasound2-dev` for audio playback:
-```bash
-sudo apt-get install libasound2-dev
+### Running the System
+
+- To launch GoComet, simply run:
+```
+python gocomet.py
+```
+- Mention the path to the docs and audio_file when prompted. To use the ones already in the directory, just press enter when prompted.
+
+## Workflow
+
+The system transcribes the provided audio file.
+
+It analyzes the sentiment of the transcribed text.
+
+Relevant context is retrieved from stored documents.
+
+The language model generates a contextual response.
+
+The response is converted to speech and played back.
+
+
 
